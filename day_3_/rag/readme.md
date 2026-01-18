@@ -497,18 +497,3 @@ They are **canonical, stable, and non-hype**. Do not over-list.
   [https://www.trulens.org/](https://www.trulens.org/)
 
 ---
-
-### Guidance
-
-If this list grows, split into:
-
-* *Foundations*
-* *Retrieval*
-* *Evaluation*
-
-Do **not** mix tutorials, blog hype, or vendor marketing here.
-
-If you want, I can:
-
-* Trim this to a **5-link “essential only” list**
-* Or align links explicitly to **sections in the page**
