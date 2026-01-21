@@ -22,7 +22,7 @@
 
 - Recognize when basic RAG is insufficient and what types of system upgrades are typically required
 
-- Apply RAG thinking to real research workflows (e.g. literature review, interview analysis, policy briefs)_
+- Apply RAG thinking to real research workflows (e.g. literature review, interview analysis, policy briefs)
 
 ## Overview
 
@@ -113,22 +113,32 @@ Goal: produce **clean, structured chunks** that can be embedded reliably.
 
 ---
 
-### Chunking: controlling retrieval precision and context
+### Chunking: Controlling Retrieval Precision and Context
 
-Chunking is the design decision that controls two trade-offs:
+Chunking is a core design decision in retrieval-augmented generation systems. It directly determines the trade-off between retrieval precision and the amount of contextual information available to the language model during generation.
 
-* **Retrieval precision**: smaller chunks retrieve more precisely
-* **Generation quality**: larger chunks give the LLM enough context to answer well
+Smaller chunks typically improve retrieval precision by narrowing semantic matches. Larger chunks provide more contextual continuity, which can improve answer quality but increases the risk of retrieving irrelevant information and exceeding context limits.
 
-Common strategies (in increasing sophistication):
+#### Common Chunking Strategies (Increasing in Sophistication)
 
-* **Fixed-size** (fast, brittle)
-* **Recursive** (best default; respects document structure)
-* **Semantic** (topic-aware; better retrieval, higher cost)
-* **Contextual / “chunk + summary”** (reduces “homeless chunks”)
-* **Late / page-level / multimodal chunking** (preserves layout context where it matters)
+* **Fixed-size chunking**
+  Splits text into uniform token or character lengths. Simple and fast, but insensitive to document structure and prone to semantic fragmentation.
 
-Practical rule: treat chunking as a **failure control** mechanism, not formatting.
+* **Recursive chunking**
+  Splits content hierarchically based on document structure (e.g., sections, paragraphs). Generally the most reliable default for structured documents.
+
+* **Semantic chunking**
+  Groups text by topic or semantic coherence rather than size. Improves retrieval relevance at the cost of higher preprocessing complexity and compute.
+
+* **Contextual (chunk + summary) approaches**
+  Augments each chunk with a short contextual summary to reduce ambiguity and mitigate the problem of context-poor or “orphaned” chunks.
+
+* **Late, page-level, or multimodal chunking**
+  Defers chunking until query time or preserves layout, tables, and visual structure. Useful for documents where spatial or multimodal context affects interpretation.
+
+#### Practical Guidance
+
+Chunking should be treated as a **retrieval failure control mechanism**, not a formatting step. Poor chunking decisions propagate directly to retrieval errors and cannot be reliably corrected during generation.
 
 ---
 
@@ -407,7 +417,7 @@ You will likely need extensions when:
 
 ---
 
-### Key takeaway
+## Key takeaway
 
 RAG is not a single technique—it is a **foundation**.
 
@@ -418,12 +428,6 @@ Most real systems evolve by:
 3. Introducing feedback and evaluation loops
 
 Understanding these boundaries is more valuable than building a perfect first pipeline.
-
----
-
-## Related Files
-Below is a **clean, minimal set of external links** suitable for **## Related Files**.
-They are **canonical, stable, and non-hype**. Do not over-list.
 
 ---
 
